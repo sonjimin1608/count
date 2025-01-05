@@ -85,6 +85,8 @@ for i in range(len(id)):
     cell = sheet.cell(row = 9 * week + 2 + i, column = 6)
     if cell.value < 3:
         cell.fill = PatternFill(start_color = "d1162f", end_color = "d1162f", fill_type = "solid")
+    else:
+        cell.fill = PatternFill(start_color = "00962f", end_color = "00962f", fill_type = "solid")
 print()
 print()
 
