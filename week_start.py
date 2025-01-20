@@ -60,7 +60,9 @@ for i in range(len(id)):
     # print(f"ID: {id[i]} - 테이블 행 갯수: {len(rows)}")
 
     # 각 행의 데이터 추출
+    silver2 = str(int(rows[10].find_element(By.CLASS_NAME, "css-1vpdhtk").text)).rjust(3)
     silver1 = str(int(rows[11].find_element(By.CLASS_NAME, "css-1vpdhtk").text)).rjust(3)
+    silver1 = int(silver1) + int(silver2)
     total = str(0.5 * int(silver1) + int(gold) + int(platinum) * 2 + int(dia_above) * 5).rjust(5)
     idid = id[i].ljust(15)
 

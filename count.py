@@ -26,7 +26,7 @@ current_date = datetime.now()
 formatted_Date = current_date.strftime("%Y/%m/%d(%a)")
 print(formatted_Date)
 week = int(input("몇 주차 "))
-print("----------------------------------------------------------------------------------------------------")
+print("---------------------------------------------------------------------------------------------------")
 
 id = ["dk040106", "ryan040", "jamie1608", "sdi5595", "dydrms0417", "thdwogjs040923", "sevenrich03"]
 file_path = "result.xlsx"
@@ -68,22 +68,24 @@ for i in range(len(id)):
     # print(f"ID: {id[i]} - 테이블 행 갯수: {len(rows)}")
 
     # 각 행의 데이터 추출
+    silver2 = str(int(rows[10].find_element(By.CLASS_NAME, "css-1vpdhtk").text)).rjust(3)
     silver1 = str(int(rows[11].find_element(By.CLASS_NAME, "css-1vpdhtk").text) - data[i][0]).rjust(3)
+    silver1 = str(int(silver1) + int(silver2)).rjust(3)
     total = str(0.5 * int(silver1) + int(gold) + int(platinum) * 2 + int(dia_above) * 5).rjust(5)
     idid = id[i].ljust(15)
     
-    print("|", idid, "| Silver1 :",silver1,
+    print("|", idid, "| Silver :",silver1,
                      "| Gold :", gold,
                      "| Platinum :",platinum, 
                      "| Dia & Ruby :", dia_above,
                      "| Total :", total, "|")
-    print("----------------------------------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------------------------------")
     l = [int(silver1), int(gold), int(platinum), int(dia_above), float(total)]
     for j in range(5):
         cell = sheet.cell(row = 9 * week + 2 + i, column = 2 + j)
         cell.value = l[j]
     cell = sheet.cell(row = 9 * week + 2 + i, column = 6)
-    if cell.value < 3:
+    if cell.value < 5:
         cell.fill = PatternFill(start_color = "d1162f", end_color = "d1162f", fill_type = "solid")
     else:
         cell.fill = PatternFill(start_color = "00962f", end_color = "00962f", fill_type = "solid")
